@@ -95,7 +95,23 @@ Certifique-se de que todos os critérios de aceite são atendidos durante o dese
 
 ## Autor
 
-Desenvolvido por [Seu Nome]
+Desenvolvido por André Macedo Machado.
+
+## Sobre o Desenvolvimento da Feature de Recomendação
+
+O desenvolvimento dessa [funcionalidade](#Missão) envolveu duas operações principais:
+
+- Gerenciamento de estado entre componentes: Para garantir que a aplicação disparasse corretamente as alterações do `Form` para a `RecomendationList`, elevei a chamada dos hooks/states para o componente pai (`App`). Dessa forma, utilizei props para compartilhar uma única instância dos estados necessários, como por exemplo recomendations (`useRecomendations`).
+
+- Processamento do serviço de recomendação: Desenvolvi a lógica de recomendação atribuindo um score aos produtos com base nos dados de preferências do usuário (`FormData`). Caso houvesse um empate no score, utilizei um critério secundário baseado na ordem dos registros, assumindo que o maior ID representa o produto mais recente.
+
+Em relação à organização do código, modularizei bem o `recomendation.service`. Optei por não exportar ou testar diretamente as funções internas do módulo, pois seus dados eram derivados de getRecomendations, que já possui testes validados. Tomei essa decisão visando encapsulamento, delegando a responsabilidade a um único módulo, o que reduz a quantidade de código e simplifica os testes.
+
+Além disso, utilizei useCallback no handler do componente Form para otimizar re-renders e melhorar a performance da aplicação.
+
+Minha principal dificuldade foi determinar quais partes do código eu poderia modificar. No entanto, acredito que o resultado final ficou clean e performático.
+
+Agradeço pela oportunidade de aprendizado! 🚀
 
 ## Licença
 
